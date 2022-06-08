@@ -3,7 +3,6 @@
 # Some changed by: UnderMind0x41                        #
 # Another changes by: Erghel                            #
 # Description: A social engineering password generator  #
-# This script required python version >= 3.0            #
 #########################################################
 
 import argparse
@@ -13,7 +12,7 @@ from pyfiglet import Figlet
 max_count_default = 1000000
 max_count_main_default = 1000
 
-preview_text = Figlet(font='slant')
+preview_text = Figlet(font='standard')
 print(preview_text.renderText('Mr.Password'))
 
 class PassGen:
