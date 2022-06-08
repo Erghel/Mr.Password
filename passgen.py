@@ -31,9 +31,9 @@ class PassGen:
     def question(self, target):
         answers = {}
 
-        answers['Имя'] = self.prompt('Введите {}\'s имя: '.format(target))
-        answers['Фамилия'] = self.prompt('Введите {}\'s фамилию: '.format(target))
-        answers['Псевдоним'] = self.prompt('Введите {}\'s псевдоним: '.format(target))
+        answers['Имя'] = self.prompt('Введите {}\ имя: '.format(target))
+        answers['Фамилия'] = self.prompt('Введите {}\ фамилию: '.format(target))
+        answers['Псевдоним'] = self.prompt('Введите {}\ псевдоним: '.format(target))
 
         while True:
             bday = self.prompt('Введите {}\'s дату рождения (dd.mm.yyyy): '.format(target))
@@ -173,7 +173,7 @@ class PassGen:
                                 self.passwords.append(q)     
         
     def generator(self, ignore_additional = True):
-        self.target = self.question('Цель')  
+        self.target = self.question('Цели')  
         print('\n')
 
         self.spouse = self.question('Жена')
