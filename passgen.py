@@ -185,7 +185,7 @@ class PassGen:
         self.pet = self.question('Питомец')
         print('\n')
 
-        print('Создаются основные пароли... \nIt\'s может занять некоторое время.')
+        print('Создаются основные пароли... \nэто\'s может занять некоторое время.')
         self.format_names()
         if self.silent:
             print("...созданы {} основные пароли".format(len(self.passwords)))
