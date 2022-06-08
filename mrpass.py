@@ -195,6 +195,8 @@ class PassGen:
         output_file = '{}.txt'.format(self.target['Имя'].lower()
                              if self.target['Имя'] else 'pass.txt')
 
+      # output_file = 'pass.txt'
+
         with open(output_file, 'wt') as f:
             for pwd in self.passwords:
                 if not self.silent:
