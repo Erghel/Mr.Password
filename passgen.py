@@ -5,9 +5,13 @@
 # This script required python version >= 3.0
 import argparse
 import sys
+from pyfiglet import Figlet
 
 max_count_default = 1000000
 max_count_main_default = 1000
+
+preview_text = Figlet(font='slant')
+print(preview_text.renderText('Mr.Password'))
 
 class PassGen:
 
