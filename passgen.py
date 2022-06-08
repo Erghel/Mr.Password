@@ -27,23 +27,23 @@ class PassGen:
     def question(self, target):
         answers = {}
 
-        answers['firstname'] = self.prompt('Enter {}\'s first name: '.format(target))
-        answers['lastname'] = self.prompt('Enter {}\'s last name: '.format(target))
-        answers['nickname'] = self.prompt('Enter {}\'s nick name: '.format(target))
+        answers['Имя'] = self.prompt('Введите {}\'s имя: '.format(target))
+        answers['Фамилия'] = self.prompt('Введите {}\'s фамилию: '.format(target))
+        answers['Псевдоним'] = self.prompt('Введите {}\'s псевдоним: '.format(target))
 
         while True:
-            bday = self.prompt('Enter {}\'s birthday (dd.mm.yyyy): '.format(target))
+            bday = self.prompt('Введите {}\'s дату рождения (dd.mm.yyyy): '.format(target))
 
             if not len(bday.strip()):
                 break
 
             if len(bday.split('.')) != 3:
-                print('Invalid birthday format\n')
+                print('Неправильный формат дня рождения\n')
                 continue
             
             for _ in bday.split('.'):
                 if not _.isdigit():
-                    print('Birthday only requires numbers\n')
+                    print('День рождения включает только цифры\n')
                     continue
             
             dd, mm, yyyy = bday.split('.')
@@ -57,7 +57,7 @@ class PassGen:
             bday = { 'day': dd, 'month': mm, 'year': int(yyyy) }
             break 
             
-        answers['birthday'] = bday
+        answers['День рождения'] = bday
         return answers   
 
     def cases(self, word):
@@ -74,7 +74,7 @@ class PassGen:
             iters = 0
             for data in [self.target, self.spouse, self.child, self.pet]:
 
-                for n in ['firstname', 'lastname', 'nickname']:
+                for n in ['Имя', 'Фамилия', 'Псевдоним']:
 
                     fullname_list = []
                     name = data[n].strip()
@@ -83,7 +83,7 @@ class PassGen:
                         continue
                     
                     if not iters:
-                        fullname_list = self.fullname(data['firstname'], data['lastname'])
+                        fullname_list = self.fullname(data['Имя'], data['Фамилия'])
                         iters += 1
                     
                     for word in self.cases(name) + fullname_list:
@@ -105,7 +105,7 @@ class PassGen:
                         if not c in self.passwords:
                             self.passwords.append(c)
 
-                        bday = data['birthday']
+                        bday = data['День рождения']
 
                         if bday:
                             d, e, f, g, h, i, j, k, l, m, n, o, p, q = (
@@ -169,22 +169,22 @@ class PassGen:
                                 self.passwords.append(q)     
         
     def generator(self, ignore_additional = True):
-        self.target = self.question('target')  
+        self.target = self.question('Цель')  
         print('\n')
 
-        self.spouse = self.question('spouse')
+        self.spouse = self.question('Жена')
         print('\n')
 
-        self.child = self.question('child')
+        self.child = self.question('Ребенок')
         print('\n')
 
-        self.pet = self.question('pet')
+        self.pet = self.question('Питомец')
         print('\n')
 
-        print('Generating main passwords... \nIt\'s may take a while.')
+        print('Создаются основные пароли... \nIt\'s может занять некоторое время.')
         self.format_names()
         if self.silent:
-            print("...generated {} main passwords".format(len(self.passwords)))
+            print("...созданы {} основные пароли".format(len(self.passwords)))
 
         output_file = '{}.txt'.format(self.target['firstname'].lower()
                              if self.target['firstname'] else 'pass.txt')
@@ -192,24 +192,24 @@ class PassGen:
         with open(output_file, 'wt') as f:
             for pwd in self.passwords:
                 if not self.silent:
-                    print('Writing ...')
+                    print('Записываю ...')
                 f.write('{}\n'.format(pwd))
 
         if not ignore_additional:
-            print("Generating additionals combinations...")
+            print("Создаются дополнительные комбинации пароля...")
             with open(output_file, 'at') as f:
                 i = 0
                 while(i < self.max_count):
                     if not self.silent:
-                        print('Writing additional combinations ... {}/{}'.format(i*3, self.max_count*3))
-                    f.write('{}{}\n'.format(self.target['firstname'], i))
-                    f.write('{}{}\n'.format(self.target['lastname'], i))
-                    f.write('{}{}\n'.format(self.target['nickname'], i))
+                        print('Записываю дополнительные комбинации ... {}/{}'.format(i*3, self.max_count*3))
+                    f.write('{}{}\n'.format(self.target['Имя'], i))
+                    f.write('{}{}\n'.format(self.target['Фамилия'], i))
+                    f.write('{}{}\n'.format(self.target['Псевдоним'], i))
                     i += 1
             if self.silent:
                 print("...generated {} additional combinations".format(self.max_count*3))
 
-        print('Passwords Generated in file: {}'.format(output_file))
+        print('Пароли собраны в файле: {}'.format(output_file))
         quit()
 
 
