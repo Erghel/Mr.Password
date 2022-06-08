@@ -18,8 +18,8 @@ This script required python version >= 3.0
 ## How To Use
 ```bash
 $ git clone https://github.com/Erghel/Mr.Password.git
-$ cd PassGen/
-$ python3 ./passgen.py
+$ cd Mr.Password/
+$ python3 ./mrpass.py
 ```
 ## In Result
 You will get file named by victim firstname.
