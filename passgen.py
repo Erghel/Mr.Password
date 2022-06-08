@@ -1,8 +1,11 @@
-# Date: 02/23/2019
-# Original passgen author: Mohamed
-# Some changed by: UnderMind0x41
-# Description: A social engineering password generator
-# This script required python version >= 3.0
+# Date: 08/06/2022                                      #
+# Original passgen author: Mohamed                      #
+# Some changed by: UnderMind0x41                        #
+# Another changes by: Erghel                            #
+# Description: A social engineering password generator  #
+# This script required python version >= 3.0            #
+#########################################################
+
 import argparse
 import sys
 from pyfiglet import Figlet
@@ -31,12 +34,12 @@ class PassGen:
     def question(self, target):
         answers = {}
 
-        answers['Имя'] = self.prompt('Введите {}\ имя: '.format(target))
-        answers['Фамилия'] = self.prompt('Введите {}\ фамилию: '.format(target))
-        answers['Псевдоним'] = self.prompt('Введите {}\ псевдоним: '.format(target))
+        answers['Имя'] = self.prompt('Введите имя {}: '.format(target))
+        answers['Фамилия'] = self.prompt('Введите фамилию {}: '.format(target))
+        answers['Псевдоним'] = self.prompt('Введите псевдоним {}: '.format(target))
 
         while True:
-            bday = self.prompt('Введите {}\'s дату рождения (dd.mm.yyyy): '.format(target))
+            bday = self.prompt('Введите дату рождения {} (dd.mm.yyyy): '.format(target))
 
             if not len(bday.strip()):
                 break
@@ -176,13 +179,13 @@ class PassGen:
         self.target = self.question('Цели')  
         print('\n')
 
-        self.spouse = self.question('Жена')
+        self.spouse = self.question('Жены')
         print('\n')
 
-        self.child = self.question('Ребенок')
+        self.child = self.question('Ребенка')
         print('\n')
 
-        self.pet = self.question('Питомец')
+        self.pet = self.question('Питомца')
         print('\n')
 
         print('Создаются основные пароли... \nэто\'s может занять некоторое время.')
@@ -190,8 +193,8 @@ class PassGen:
         if self.silent:
             print("...созданы {} основные пароли".format(len(self.passwords)))
 
-        output_file = '{}.txt'.format(self.target['firstname'].lower()
-                             if self.target['firstname'] else 'pass.txt')
+        output_file = '{}.txt'.format(self.target['Имя'].lower()
+                             if self.target['Имя'] else 'pass.txt')
 
         with open(output_file, 'wt') as f:
             for pwd in self.passwords:
@@ -211,7 +214,7 @@ class PassGen:
                     f.write('{}{}\n'.format(self.target['Псевдоним'], i))
                     i += 1
             if self.silent:
-                print("...generated {} additional combinations".format(self.max_count*3))
+                print("...созданы {} основные комбинации".format(self.max_count*3))
 
         print('Пароли собраны в файле: {}'.format(output_file))
         quit()
