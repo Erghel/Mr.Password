@@ -26,6 +26,7 @@ This script required python version >= 3.0
 ```bash
 git clone https://github.com/Erghel/Mr.Password.git
 cd Mr.Password/
+pip3 install -r requirements.txt
 python3 ./mrpass.py
 ```
 ## In Result
